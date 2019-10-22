@@ -15,6 +15,10 @@ class CreateUserSettingsTable extends Migration
     {
         Schema::create('user_settings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
+            $table->string('photo_url');
+            $table->integer('current_day');
+            $table->integer('points');
             $table->timestamps();
         });
     }
