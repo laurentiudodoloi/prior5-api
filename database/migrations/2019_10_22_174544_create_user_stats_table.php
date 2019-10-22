@@ -16,7 +16,7 @@ class CreateUserStatsTable extends Migration
         Schema::create('user_stats', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->integer('day_number');
+            $table->dateTime('date');
             $table->integer('completed_tasks');
             $table->timestamps();
         });
