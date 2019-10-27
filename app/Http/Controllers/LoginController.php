@@ -24,6 +24,10 @@ class LoginController extends Controller
             $email = $request->input('email');
             $password = $request->input('password');
 
+            if (!$email || !$password) {
+                return response()->json(false);
+            }
+
             $user = User::query()
                 ->with([
                     'settings',

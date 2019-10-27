@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', 'LoginController@login')->name('login');
 
 Route::prefix('tasks')->group(function () {
+    Route::get('/', 'TaskController@index')->name('tasks.index');
     Route::post('create', 'TaskController@create')->name('tasks.create');
     Route::post('update-order', 'TaskController@updateOrder')->name('tasks.update-order');
     Route::post('update-state', 'TaskController@updateState')->name('tasks.update-state');
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});

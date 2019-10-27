@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    public function index()
+    {
+        $tasks = Task::all();
+
+        $response = [
+            'success' => !!count($tasks),
+            'entities' => $tasks,
+        ];
+
+        return response()->json($response);
+    }
+
     public function create(Request $request)
     {
         $request->validate([
@@ -25,7 +37,7 @@ class TaskController extends Controller
 
         $data = [
             'success' => !!$task,
-            'task' => $task,
+            'entity' => $task,
         ];
 
         return response()->json($data);
