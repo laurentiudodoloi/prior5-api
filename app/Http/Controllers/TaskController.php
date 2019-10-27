@@ -29,11 +29,15 @@ class TaskController extends Controller
             'order' => 'required|integer',
         ]);
 
+        $order = Task::query()
+            ->where('user_id', $request->input('user_id'))
+            ->max('order');
+
         $task = Task::query()
             ->create([
                 'user_id' => $request->input('user_id'),
                 'description' => $request->input('description'),
-                'order' => $request->input('order'),
+                'order' => intval($order) + 1,
                 'completed' => false,
             ]);
 
