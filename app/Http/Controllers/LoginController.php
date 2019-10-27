@@ -9,17 +9,16 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $photoUrl = $request->input('image');
+        $userId = $request->input('user_id');
 
-        if ($photoUrl) {
+        if ($userId) {
             $user = User::query()
                 ->with([
                     'settings',
                     'stats',
                     'tasks',
                 ])
-                ->where('photo_url', $photoUrl)
-                ->first();
+                ->find($userId);
         } else {
             $email = $request->input('email');
             $password = $request->input('password');
