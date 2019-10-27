@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', 'LoginController@login')->name('login');
 
 Route::prefix('tasks')->group(function () {
-    Route::get('/', 'TaskController@index')->name('tasks.index');
+    Route::get('/{user_id}', 'TaskController@index')->name('tasks.index');
     Route::post('create', 'TaskController@create')->name('tasks.create');
     Route::post('update-order', 'TaskController@updateOrder')->name('tasks.update-order');
     Route::post('update-state', 'TaskController@updateState')->name('tasks.update-state');

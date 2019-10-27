@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index($userId)
     {
-        $tasks = Task::all();
+        $tasks = Task::query()
+            ->where('user_id', $userId)
+            ->get();
 
         $response = [
             'success' => !!count($tasks),
