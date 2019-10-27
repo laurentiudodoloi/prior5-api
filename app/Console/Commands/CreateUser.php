@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Eloquent\UserSetting;
 use App\User;
 use Illuminate\Console\Command;
 
@@ -38,12 +39,20 @@ class CreateUser extends Command
      */
     public function handle()
     {
-        User::query()
+        $user = User::query()
             ->create([
                 'first_name' => '',
                 'last_name' => '',
                 'email' => $this->argument('email'),
                 'password' => $this->argument('password'),
+            ]);
+
+        UserSetting::query()
+            ->create([
+                'user_id' => $user->id,
+                'photo_url' => '',
+                'current_day' => 0,
+                'points' => 0,
             ]);
     }
 }
